@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Shootday Overdue Action Alerts",
+  "version": "1.0.0",
+  "description": "Watches an Airtable view for overdue Next Human Action dates and posts alerts to Slack.",
+  "permissions": ["storage", "alarms", "scripting", "notifications"],
+  "host_permissions": ["https://airtable.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Shootday Overdue Action Alerts"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://airtable.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
